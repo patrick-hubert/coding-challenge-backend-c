@@ -23,24 +23,25 @@ var numChildren = process.env.NUM_CHILDREN || require('os').cpus().length;
 var maxResults = process.env.MAX_RESULTS || 4;
 var port = process.env.PORT || 2345;
 
+var docUrl = 'https://github.com/patrick-hubert/coding-challenge-backend-c/wiki/API-Documentation#api-call';
 // Error messages definition.
 var eMissingRequiredQueryParameter = JSON.stringify({
   'status' : '400',
   'code': 'MissingRequiredQueryParameter',
   'message': 'A required query parameter was not specified for this request.',
-  'more info': 'https://github.com/patrick-hubert/coding-challenge-backend-c/wiki'
+  'more info': docUrl
 });
 var eInvalidQueryParameterValue = JSON.stringify({
   'status' : '400',
   'code': 'InvalidQueryParameterValue',
   'message': 'An invalid value was specified for one of the query parameters in the request URI.',
-  'more info': 'https://github.com/patrick-hubert/coding-challenge-backend-c/wiki'
+  'more info': docUrl
 });
 var eInvalidPath = JSON.stringify({
   'status': '404',
   'code': 'InvalidPath',
   'message': 'Invalid path.',
-  'more info': 'https://github.com/patrick-hubert/coding-challenge-backend-c/wiki'
+  'more info': docUrl
 });
 
 
@@ -72,7 +73,7 @@ function handlerSuggestion(userRequest, res) {
           'status' : '500',
           'code': 'InternalError',
           'message': err,
-          'more info': 'https://github.com/patrick-hubert/coding-challenge-backend-c/wiki'
+          'more info': docUrl
         }));
       } else {
         if (longitude && latitude) {
@@ -139,7 +140,7 @@ function initServer(dataSource, callback) {
         var server = http.createServer(function (req, res) {
           var userRequest = url.parse(req.url, true);
           if (
-            userRequest.pathname === '/suggestions' &&
+            userRequest.pathname === '/v1/suggestions' &&
               req.method === 'GET'
           ) {
             handlerSuggestion(userRequest, res);
@@ -169,9 +170,9 @@ function main() {
       console.error(err);
     } else if (server) {
       // Nothing to do.
-      console.log('%d - Child server running at http://0.0.0.0:%d/suggestions', process.pid, port);
+      console.log('%d - Child server running at http://0.0.0.0:%d/v1/suggestions', process.pid, port);
     } else {
-      console.log('%d - Master server running at http://0.0.0.0:%d/suggestions', process.pid, port);
+      console.log('%d - Master server running at http://0.0.0.0:%d/v1/suggestions', process.pid, port);
     }
   });
 }

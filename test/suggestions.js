@@ -68,13 +68,13 @@ describe('validating server routes', function () {
  * Interface specific tests.
  */
 
-  describe('GET /suggestions', function () {
+  describe('GET /v1/suggestions', function () {
     describe('with a missing query parameter', function () {
       var response;
 
       before(function (done) {
         request
-          .get('/suggestions')
+          .get('/v1/suggestions')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);
@@ -98,7 +98,7 @@ describe('validating server routes', function () {
 
       before(function (done) {
         request
-          .get('/suggestions?q=')
+          .get('/v1/suggestions?q=')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);
@@ -122,7 +122,7 @@ describe('validating server routes', function () {
 
       before(function (done) {
         request
-          .get('/suggestions?q=foobar&latitude=bad')
+          .get('/v1/suggestions?q=foobar&latitude=bad')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);
@@ -146,7 +146,7 @@ describe('validating server routes', function () {
 
       before(function (done) {
         request
-          .get('/suggestions?q=SomeRandomCityInTheMiddleOfNowhere')
+          .get('/v1/suggestions?q=SomeRandomCityInTheMiddleOfNowhere')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);
@@ -169,7 +169,7 @@ describe('validating server routes', function () {
 
       before(function (done) {
         request
-          .get('/suggestions?q=Montreal')
+          .get('/v1/suggestions?q=Montreal')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);
@@ -225,7 +225,7 @@ describe('validating server routes', function () {
 
       before(function (done) {
         request
-          .get('/suggestions?q=Londo&latitude=43.70011&longitude=-79.4163')
+          .get('/v1/suggestions?q=Londo&latitude=43.70011&longitude=-79.4163')
           .end(function (err, res) {
             response = res;
             response.json = JSON.parse(res.text);

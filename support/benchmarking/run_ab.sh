@@ -2,7 +2,7 @@
 
 echo "Running Apache Benchmark"
 
-ab -c 5 -n 100 -g output.gp 'https://vast-hollows-6270.herokuapp.com/suggestions?q=ken'
+ab -c 5 -n 100 -g output.gp 'https://vast-hollows-6270.herokuapp.com/v1/suggestions?q=ken'
 
 echo "Done. Now running gnuplot on the results"
 

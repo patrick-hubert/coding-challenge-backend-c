@@ -2,7 +2,7 @@
 
 echo "Running Apache Benchmark"
 
-ab -c 25 -n 2000 -g output_local.gp 'http://127.0.0.1:2345/suggestions?q=ken'
+ab -c 25 -n 2000 -g output_local.gp 'http://127.0.0.1:2345/v1/suggestions?q=ken'
 
 echo "Done. Now running gnuplot on the results"
 
